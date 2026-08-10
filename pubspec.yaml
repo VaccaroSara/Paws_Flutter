@@ -1,0 +1,39 @@
+name: paws_flutter
+description: "A Flutter replica of the Paws Android application."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  firebase_core: ^3.12.0
+  firebase_auth: ^5.5.1
+  cloud_firestore: ^5.6.5
+  supabase_flutter: ^2.8.4
+  image_picker: ^1.1.2
+  flutter_svg: ^2.0.17
+  cached_network_image: ^3.4.1
+  url_launcher: ^6.3.1
+  shared_preferences: ^2.5.3
+  uuid: ^4.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: CustomFont
+      fonts:
+        - asset: assets/fonts/font.ttf
