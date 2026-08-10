@@ -13,7 +13,7 @@ class SupabaseService {
     try {
       await Supabase.initialize(
         url: supabaseUrl,
-        anonKey: supabaseKey,
+        publishableKey: supabaseKey,
       );
       _isInitialized = true;
     } catch (e) {

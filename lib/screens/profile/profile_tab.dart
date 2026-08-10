@@ -254,6 +254,7 @@ class _ProfileTabState extends State<ProfileTab> {
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                           color: AppColors.textDark,
+                          fontFamily: AppTheme.fontSerif,
                         ),
                       ),
                       IconButton(
@@ -390,7 +391,7 @@ class _ProfileTabState extends State<ProfileTab> {
                 children: [
                   Text(
                     label,
-                    style: const TextStyle(fontSize: 12, color: AppColors.textMuted),
+                    style: const TextStyle(fontSize: 12, color: AppColors.textMuted, fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(height: 2),
                   Text(

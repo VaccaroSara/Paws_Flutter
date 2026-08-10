@@ -191,6 +191,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: AppColors.textDark,
+                          fontFamily: AppTheme.fontSerif,
                         ),
                       ),
                       if (fullName.isNotEmpty) ...[
@@ -342,6 +343,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textDark,
+                      fontFamily: AppTheme.fontSerif,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

@@ -136,6 +136,7 @@ class _PuppyDetailsScreenState extends State<PuppyDetailsScreen> {
                                 fontSize: 26,
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.textDark,
+                                fontFamily: AppTheme.fontSerif,
                               ),
                             ),
                           ),

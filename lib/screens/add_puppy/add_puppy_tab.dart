@@ -201,7 +201,8 @@ class _AddPuppyTabState extends State<AddPuppyTab> {
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: AppColors.textDark,
+                          color: Color(0xFFA67B5B),
+                          fontFamily: AppTheme.fontSerif,
                         ),
                       );
                     },
@@ -240,10 +241,10 @@ class _AddPuppyTabState extends State<AddPuppyTab> {
                           Expanded(
                             child: TextField(
                               controller: _searchController,
-                              style: const TextStyle(fontSize: 14, color: AppColors.textDark),
+                              style: const TextStyle(fontSize: 14, color: AppColors.textDark, fontFamily: AppTheme.fontSerif),
                               decoration: const InputDecoration(
-                                hintText: "search for a puppy...",
-                                hintStyle: TextStyle(color: AppColors.textMuted, fontSize: 14),
+                                hintText: "search in your posts...",
+                                hintStyle: TextStyle(color: AppColors.textMuted, fontSize: 14, fontFamily: AppTheme.fontSerif),
                                 border: InputBorder.none,
                                 isDense: true,
                               ),
@@ -384,6 +385,7 @@ class _AddPuppyTabState extends State<AddPuppyTab> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           color: AppColors.textDark,
+                          fontFamily: AppTheme.fontSerif,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

@@ -14,9 +14,11 @@ class AppColors {
 }
 
 class AppTheme {
+  static const String fontSerif = 'serif';
+  static const String fontCustom = 'CustomFont';
+
   static ThemeData get theme {
     return ThemeData(
-      fontFamily: 'CustomFont',
       scaffoldBackgroundColor: AppColors.background,
       primaryColor: AppColors.primaryOrange,
       colorScheme: ColorScheme.fromSeed(
@@ -26,9 +28,9 @@ class AppTheme {
         surface: AppColors.background,
       ),
       textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: AppColors.textDark, fontFamily: 'CustomFont'),
-        bodyMedium: TextStyle(color: AppColors.textDark, fontFamily: 'CustomFont'),
-        titleLarge: TextStyle(color: AppColors.textDark, fontWeight: FontWeight.bold, fontFamily: 'CustomFont'),
+        bodyLarge: TextStyle(color: AppColors.textDark),
+        bodyMedium: TextStyle(color: AppColors.textDark),
+        titleLarge: TextStyle(color: AppColors.textDark, fontWeight: FontWeight.bold),
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
@@ -39,7 +41,6 @@ class AppTheme {
           color: AppColors.textDark,
           fontSize: 18,
           fontWeight: FontWeight.bold,
-          fontFamily: 'CustomFont',
         ),
       ),
     );

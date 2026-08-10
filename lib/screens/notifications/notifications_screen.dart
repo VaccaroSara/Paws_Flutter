@@ -57,9 +57,10 @@ class NotificationsScreen extends StatelessWidget {
             return Text(
               firstName.isNotEmpty ? "Hi, $firstName" : "Notifications",
               style: const TextStyle(
-                color: AppColors.textDark,
+                color: Color(0xFFA67B5B),
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
+                fontFamily: AppTheme.fontSerif,
               ),
             );
           },
@@ -84,7 +85,7 @@ class NotificationsScreen extends StatelessWidget {
             return const Center(
               child: Text(
                 "Nessuna notifica",
-                style: TextStyle(color: AppColors.textMuted, fontSize: 16),
+                style: TextStyle(color: AppColors.textMuted, fontSize: 16, fontWeight: FontWeight.w500),
               ),
             );
           }
@@ -119,6 +120,7 @@ class NotificationsScreen extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 14,
                           color: AppColors.textDark,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),

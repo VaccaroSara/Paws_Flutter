@@ -268,7 +268,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: DropdownButton<String>(
                             value: _accountType,
                             isExpanded: true,
-                            style: const TextStyle(fontSize: 14, color: AppColors.textDark, fontFamily: 'CustomFont'),
+                            style: const TextStyle(fontSize: 14, color: AppColors.textDark),
                             items: _accountTypes.map((type) {
                               return DropdownMenuItem<String>(
                                 value: type,

@@ -175,7 +175,8 @@ class HomeTabState extends State<HomeTab> {
                           style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
-                            color: AppColors.textDark,
+                            color: Color(0xFFA67B5B),
+                            fontFamily: AppTheme.fontSerif,
                           ),
                         );
                       },
@@ -238,10 +239,10 @@ class HomeTabState extends State<HomeTab> {
                             Expanded(
                               child: TextField(
                                 controller: _searchController,
-                                style: const TextStyle(fontSize: 14, color: AppColors.textDark),
+                                style: const TextStyle(fontSize: 14, color: AppColors.textDark, fontFamily: AppTheme.fontSerif),
                                 decoration: const InputDecoration(
                                   hintText: "search for a user...",
-                                  hintStyle: TextStyle(color: AppColors.textMuted, fontSize: 14),
+                                  hintStyle: TextStyle(color: AppColors.textMuted, fontSize: 14, fontFamily: AppTheme.fontSerif),
                                   border: InputBorder.none,
                                   isDense: true,
                                 ),
