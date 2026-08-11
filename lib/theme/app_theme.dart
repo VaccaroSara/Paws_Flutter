@@ -8,8 +8,8 @@ class AppColors {
   static const Color accentOrange = Color(0xFFE87A5D);
   static const Color inputBackground = Color(0xFFF5EFE6);
   static const Color cardBackground = Color(0xFFFAF5EF);
-  static const Color femaleBg = Color(0xFFFDE8E8);
-  static const Color maleBg = Color(0xFFFFF3E0);
+  static const Color femaleBg = Color(0xFFDC6FA6);
+  static const Color maleBg = Color(0xFF78A7D3);
   static const Color iconDark = Color(0xFF4A3B32);
 }
 

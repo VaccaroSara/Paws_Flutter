@@ -474,10 +474,10 @@ class HomeTabState extends State<HomeTab> {
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   decoration: const BoxDecoration(
-                    color: AppColors.primaryOrange,
+                    color: Colors.white,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.info_outline, color: Colors.white, size: 22),
+                  child: const Icon(Icons.info_outline, color: AppColors.textDark, size: 22),
                 ),
               ),
             ),
@@ -500,9 +500,7 @@ class HomeTabState extends State<HomeTab> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
+                      child: Row(
                         children: [
                           Text(
                             post.name,
@@ -512,24 +510,32 @@ class HomeTabState extends State<HomeTab> {
                               color: Colors.white,
                             ),
                           ),
-                          const SizedBox(height: 4),
-                          Row(
-                            children: [
-                              Image.asset(
-                                post.type.toLowerCase() == 'cat'
-                                    ? 'assets/images/cat.png'
-                                    : post.type.toLowerCase() == 'bird'
-                                        ? 'assets/images/bird.png'
-                                        : 'assets/images/dog.png',
-                                width: 18,
-                                height: 18,
-                              ),
-                              const SizedBox(width: 6),
-                              Text(
-                                post.type,
-                                style: const TextStyle(color: Colors.white70, fontSize: 14),
-                              ),
-                            ],
+                          const SizedBox(width: 10),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.25),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Image.asset(
+                                  post.type.toLowerCase() == 'cat'
+                                      ? 'assets/images/cat.png'
+                                      : post.type.toLowerCase() == 'bird'
+                                          ? 'assets/images/bird.png'
+                                          : 'assets/images/dog.png',
+                                  width: 16,
+                                  height: 16,
+                                ),
+                                const SizedBox(width: 6),
+                                Text(
+                                  post.type,
+                                  style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -545,7 +551,7 @@ class HomeTabState extends State<HomeTab> {
                       ),
                       child: Icon(
                         isFemale ? Icons.female : Icons.male,
-                        color: isFemale ? Colors.pink : AppColors.primaryOrange,
+                        color: Colors.white,
                         size: 20,
                       ),
                     ),
@@ -555,7 +561,7 @@ class HomeTabState extends State<HomeTab> {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                       decoration: BoxDecoration(
-                        color: const Color(0x66000000),
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: StreamBuilder<int>(
@@ -570,7 +576,7 @@ class HomeTabState extends State<HomeTab> {
                               Text(
                                 "$count",
                                 style: const TextStyle(
-                                  color: Colors.white,
+                                  color: AppColors.textDark,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
                                 ),

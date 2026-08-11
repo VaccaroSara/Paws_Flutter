@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../models/puppy_post_model.dart';
 import '../../services/firebase_service.dart';
 import '../../theme/app_theme.dart';
@@ -126,45 +125,36 @@ class _PuppyDetailsScreenState extends State<PuppyDetailsScreen> {
                       ),
                       const SizedBox(height: 20),
 
-                      // Name and Gender Badge
+                      // Name
+                      Text(
+                        post.name,
+                        style: const TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textDark,
+                          fontFamily: AppTheme.fontSerif,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+
+                      // Detail Capsules Row (Gender, Type & Age)
                       Row(
                         children: [
-                          Expanded(
-                            child: Text(
-                              post.name,
-                              style: const TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.textDark,
-                                fontFamily: AppTheme.fontSerif,
-                              ),
-                            ),
-                          ),
                           Container(
-                            width: 36,
-                            height: 36,
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                             decoration: BoxDecoration(
                               color: isFemale ? AppColors.femaleBg : AppColors.maleBg,
-                              shape: BoxShape.circle,
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            padding: const EdgeInsets.all(8),
-                            child: SvgPicture.asset(
-                              'assets/icons/female.svg',
-                              colorFilter: ColorFilter.mode(
-                                isFemale ? Colors.pink : AppColors.primaryOrange,
-                                BlendMode.srcIn,
-                              ),
+                            child: Icon(
+                              isFemale ? Icons.female : Icons.male,
+                              color: Colors.white,
+                              size: 16,
                             ),
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-
-                      // Detail Capsules Row (Type & Age)
-                      Row(
-                        children: [
+                          const SizedBox(width: 8),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                             decoration: BoxDecoration(
                               color: AppColors.inputBackground,
                               borderRadius: BorderRadius.circular(20),
@@ -177,8 +167,8 @@ class _PuppyDetailsScreenState extends State<PuppyDetailsScreen> {
                                       : post.type.toLowerCase() == 'bird'
                                           ? 'assets/images/bird.png'
                                           : 'assets/images/dog.png',
-                                  width: 18,
-                                  height: 18,
+                                  width: 16,
+                                  height: 16,
                                 ),
                                 const SizedBox(width: 6),
                                 Text(
@@ -192,9 +182,9 @@ class _PuppyDetailsScreenState extends State<PuppyDetailsScreen> {
                               ],
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: 8),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                             decoration: BoxDecoration(
                               color: AppColors.inputBackground,
                               borderRadius: BorderRadius.circular(20),

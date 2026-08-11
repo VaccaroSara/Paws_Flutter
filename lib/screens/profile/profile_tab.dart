@@ -176,8 +176,57 @@ class _ProfileTabState extends State<ProfileTab> {
   }
 
   void _shareProfile(UserModel user) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Check out my profile on Paws!\nUsername: ${user.username}")),
+    final shareText = "Guarda il mio profilo su Paws!\nUsername: ${user.username}\nCittà: ${user.city}";
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (ctx) => Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Condividi Profilo",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textDark),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppColors.inputBackground,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: SelectableText(
+                shareText,
+                style: const TextStyle(color: AppColors.textDark, fontSize: 14),
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              height: 44,
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primaryOrange,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
+                ),
+                onPressed: () {
+                  Navigator.pop(ctx);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Profilo condiviso!")),
+                  );
+                },
+                icon: const Icon(Icons.share, color: Colors.white, size: 18),
+                label: const Text("Condividi", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -325,14 +374,14 @@ class _ProfileTabState extends State<ProfileTab> {
                     height: 48,
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: AppColors.primaryOrange, width: 1.5),
+                        side: const BorderSide(color: Colors.red, width: 1.5),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
                       ),
                       onPressed: _logoutUser,
                       child: const Text(
                         "LOG OUT",
                         style: TextStyle(
-                          color: AppColors.primaryOrange,
+                          color: Colors.red,
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                         ),
