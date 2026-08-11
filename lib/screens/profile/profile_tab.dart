@@ -355,7 +355,7 @@ class _ProfileTabState extends State<ProfileTab> {
                       ),
                       onPressed: _confirmDeleteAccount,
                       child: const Text(
-                        "ELIMINA ACCOUNT",
+                        "DELETE ACCOUNT",
                         style: TextStyle(
                           color: Colors.red,
                           fontWeight: FontWeight.bold,
