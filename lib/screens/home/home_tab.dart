@@ -460,7 +460,29 @@ class HomeTabState extends State<HomeTab> {
               ),
             ),
 
-            // Bottom Gradient Overlay & Details Pill
+            // Top Right Info Button
+            Positioned(
+              top: 16,
+              right: 16,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => PuppyDetailsScreen(post: post)),
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: const BoxDecoration(
+                    color: AppColors.primaryOrange,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.info_outline, color: Colors.white, size: 22),
+                ),
+              ),
+            ),
+
+            // Bottom Gradient Overlay & Details
             Positioned(
               bottom: 0,
               left: 0,
@@ -529,36 +551,33 @@ class HomeTabState extends State<HomeTab> {
                     ),
                     const SizedBox(width: 12),
 
-                    // Info Button
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => PuppyDetailsScreen(post: post)),
-                        );
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryOrange,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: StreamBuilder<int>(
-                          stream: FirebaseService.postFavoritesCountStream(post.id),
-                          builder: (context, countSnap) {
-                            final count = countSnap.data ?? 0;
-                            return Row(
-                              children: [
-                                const Icon(Icons.info_outline, color: Colors.white, size: 18),
-                                const SizedBox(width: 6),
-                                Text(
-                                  "$count",
-                                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    // Heart + Likes Count Pill
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: const Color(0x66000000),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: StreamBuilder<int>(
+                        stream: FirebaseService.postFavoritesCountStream(post.id),
+                        builder: (context, countSnap) {
+                          final count = countSnap.data ?? 0;
+                          return Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.favorite, color: AppColors.primaryOrange, size: 18),
+                              const SizedBox(width: 6),
+                              Text(
+                                "$count",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
                                 ),
-                              ],
-                            );
-                          },
-                        ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ),
                   ],

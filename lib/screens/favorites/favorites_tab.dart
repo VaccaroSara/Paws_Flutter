@@ -369,50 +369,36 @@ class _FavoritesTabState extends State<FavoritesTab> {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      StreamBuilder<int>(
-                        stream: FirebaseService.postFavoritesCountStream(post.id),
-                        builder: (context, countSnap) {
-                          final count = countSnap.data ?? 0;
-                          return Row(
-                            children: [
-                              const Icon(Icons.favorite, size: 14, color: AppColors.primaryOrange),
-                              const SizedBox(width: 4),
-                              Text(
-                                "$count",
-                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.textDark),
-                              ),
-                            ],
-                          );
+                      GestureDetector(
+                        onTap: () async {
+                          await FirebaseService.unlikePost(post.id);
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text("${post.name} rimosso dai preferiti")),
+                            );
+                          }
                         },
+                        child: StreamBuilder<int>(
+                          stream: FirebaseService.postFavoritesCountStream(post.id),
+                          builder: (context, countSnap) {
+                            final count = countSnap.data ?? 0;
+                            return Row(
+                              children: [
+                                const Icon(Icons.favorite, size: 16, color: AppColors.primaryOrange),
+                                const SizedBox(width: 4),
+                                Text(
+                                  "$count",
+                                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.textDark),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
-            ),
-
-            // Unlike Button (Trash Icon)
-            Positioned(
-              top: 8,
-              right: 8,
-              child: GestureDetector(
-                onTap: () async {
-                  await FirebaseService.unlikePost(post.id);
-                  if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("${post.name} rimosso dai preferiti")),
-                    );
-                  }
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(Icons.delete_outline, size: 16, color: Colors.red),
-                ),
-              ),
             ),
           ],
         ),
