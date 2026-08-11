@@ -170,14 +170,25 @@ class HomeTabState extends State<HomeTab> {
                       stream: FirebaseService.userStream(currentUid),
                       builder: (context, snapshot) {
                         final firstName = snapshot.data?.firstName ?? '';
-                        return Text(
-                          firstName.isNotEmpty ? "Hi, $firstName" : "Welcome",
-                          style: const TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFFA67B5B),
-                            fontFamily: AppTheme.fontSerif,
-                          ),
+                        return Row(
+                          children: [
+                            Text(
+                              firstName.isNotEmpty ? "Hi, $firstName" : "Welcome",
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFA67B5B),
+                                fontFamily: AppTheme.fontSerif,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Image.asset(
+                              'assets/images/paws_icon.png',
+                              width: 24,
+                              height: 24,
+                              color: AppColors.primaryOrange,
+                            ),
+                          ],
                         );
                       },
                     ),
@@ -502,60 +513,69 @@ class HomeTabState extends State<HomeTab> {
                     Expanded(
                       child: Row(
                         children: [
-                          Text(
-                            post.name,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                          // Gender Badge
+                          Container(
+                            width: 38,
+                            height: 38,
+                            decoration: BoxDecoration(
+                              color: isFemale ? AppColors.femaleBg : AppColors.maleBg,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              isFemale ? Icons.female : Icons.male,
                               color: Colors.white,
+                              size: 20,
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: 8),
+
+                          // Animal Type White Circle Badge (Kotlin style)
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.25),
-                              borderRadius: BorderRadius.circular(12),
+                            width: 38,
+                            height: 38,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image.asset(
-                                  post.type.toLowerCase() == 'cat'
-                                      ? 'assets/images/cat.png'
-                                      : post.type.toLowerCase() == 'bird'
-                                          ? 'assets/images/bird.png'
-                                          : 'assets/images/dog.png',
-                                  width: 16,
-                                  height: 16,
+                            child: Center(
+                              child: Image.asset(
+                                post.type.toLowerCase() == 'cat'
+                                    ? 'assets/images/cat.png'
+                                    : post.type.toLowerCase() == 'bird'
+                                        ? 'assets/images/bird.png'
+                                        : 'assets/images/dog.png',
+                                width: 24,
+                                height: 24,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+
+                          // Name Capsule
+                          Flexible(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                post.name,
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textDark,
+                                  fontFamily: AppTheme.fontSerif,
                                 ),
-                                const SizedBox(width: 6),
-                                Text(
-                                  post.type,
-                                  style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
-                                ),
-                              ],
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-
-                    // Gender Badge
-                    Container(
-                      width: 38,
-                      height: 38,
-                      decoration: BoxDecoration(
-                        color: isFemale ? AppColors.femaleBg : AppColors.maleBg,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        isFemale ? Icons.female : Icons.male,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 8),
 
                     // Heart + Likes Count Pill
                     Container(

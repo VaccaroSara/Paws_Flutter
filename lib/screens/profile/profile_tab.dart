@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../models/user_model.dart';
 import '../../services/firebase_service.dart';
 import '../../services/supabase_service.dart';
@@ -176,58 +177,11 @@ class _ProfileTabState extends State<ProfileTab> {
   }
 
   void _shareProfile(UserModel user) {
-    final shareText = "Guarda il mio profilo su Paws!\nUsername: ${user.username}\nCittà: ${user.city}";
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.white,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (ctx) => Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Condividi Profilo",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textDark),
-            ),
-            const SizedBox(height: 12),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: AppColors.inputBackground,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: SelectableText(
-                shareText,
-                style: const TextStyle(color: AppColors.textDark, fontSize: 14),
-              ),
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              height: 44,
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryOrange,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
-                ),
-                onPressed: () {
-                  Navigator.pop(ctx);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Profilo condiviso!")),
-                  );
-                },
-                icon: const Icon(Icons.share, color: Colors.white, size: 18),
-                label: const Text("Condividi", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    final fullName = "${user.firstName} ${user.lastName}".trim();
+    final username = user.username.isNotEmpty ? user.username : fullName;
+    final shareText = "Check out my profile on Paws!\n\nUsername: $username${fullName.isNotEmpty ? '\nName: $fullName' : ''}";
+    // ignore: deprecated_member_use
+    Share.share(shareText, subject: "Paws Profile");
   }
 
   void _logoutUser() async {

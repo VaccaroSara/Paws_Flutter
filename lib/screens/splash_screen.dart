@@ -81,8 +81,8 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Image.asset(
           'assets/images/sign_ic_logo.png',
-          width: 140,
-          height: 70,
+          width: 220,
+          height: 110,
           fit: BoxFit.contain,
         ),
       ),

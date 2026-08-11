@@ -34,6 +34,7 @@ class _PuppyDetailsScreenState extends State<PuppyDetailsScreen> {
             'phone': user.phone,
             'city': user.city,
             'province': user.province,
+            'profileImageUri': user.profileImageUri,
           };
         }
         _isLoadingOwner = false;
@@ -239,15 +240,24 @@ class _PuppyDetailsScreenState extends State<PuppyDetailsScreen> {
                                 ? const CircularProgressIndicator()
                                 : Row(
                                     children: [
-                                      Container(
-                                        width: 44,
-                                        height: 44,
-                                        decoration: const BoxDecoration(
-                                          color: AppColors.inputBackground,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: const Icon(Icons.person, color: AppColors.iconDark),
-                                      ),
+                                       Container(
+                                         width: 44,
+                                         height: 44,
+                                         decoration: const BoxDecoration(
+                                           color: AppColors.inputBackground,
+                                           shape: BoxShape.circle,
+                                         ),
+                                         child: ClipOval(
+                                           child: ((_ownerData?['profileImageUri'] as String? ?? '').isNotEmpty)
+                                               ? CachedNetworkImage(
+                                                   imageUrl: _ownerData!['profileImageUri'],
+                                                   fit: BoxFit.cover,
+                                                   placeholder: (ctx, url) => Container(color: AppColors.inputBackground),
+                                                   errorWidget: (ctx, url, err) => const Icon(Icons.person, color: AppColors.iconDark),
+                                                 )
+                                               : const Icon(Icons.person, color: AppColors.iconDark),
+                                         ),
+                                       ),
                                       const SizedBox(width: 12),
                                       Expanded(
                                         child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../models/user_model.dart';
 import '../../models/puppy_post_model.dart';
@@ -39,10 +40,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     }
   }
 
-  void _shareProfile(String username) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Share: Check out $username's profile on Paws!")),
-    );
+  void _shareProfile(UserModel? user) {
+    final username = user?.username ?? 'User';
+    final fullName = "${user?.firstName ?? ''} ${user?.lastName ?? ''}".trim();
+    final shareText = "Check out $username's profile on Paws!\n\nUsername: $username${fullName.isNotEmpty ? '\nName: $fullName' : ''}";
+    // ignore: deprecated_member_use
+    Share.share(shareText, subject: "Paws Profile");
   }
 
   void _showFilterDialog() {
@@ -254,7 +257,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                             ),
-                            onPressed: () => _shareProfile(username),
+                            onPressed: () => _shareProfile(user),
                             icon: const Icon(Icons.share, size: 18, color: AppColors.primaryOrange),
                             label: const Text("Share", style: TextStyle(color: AppColors.primaryOrange, fontWeight: FontWeight.bold)),
                           ),
