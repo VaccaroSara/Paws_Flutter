@@ -93,25 +93,21 @@ class NotificationsScreen extends StatelessWidget {
           return ListView.separated(
             padding: const EdgeInsets.all(16),
             itemCount: notifications.length,
-            separatorBuilder: (_, _) => const Divider(height: 1),
+            separatorBuilder: (_, _) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               final item = notifications[index];
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
+              return Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF2F2F2),
+                  borderRadius: BorderRadius.circular(16),
+                ),
                 child: Row(
                   children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: const BoxDecoration(
-                        color: AppColors.maleBg,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.notifications_none,
-                        color: AppColors.primaryOrange,
-                        size: 20,
-                      ),
+                    const Icon(
+                      Icons.favorite,
+                      color: AppColors.primaryOrange,
+                      size: 24,
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -119,7 +115,7 @@ class NotificationsScreen extends StatelessWidget {
                         item.text,
                         style: const TextStyle(
                           fontSize: 14,
-                          color: AppColors.textDark,
+                          color: AppColors.textMuted,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -130,8 +126,8 @@ class NotificationsScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                         child: CachedNetworkImage(
                           imageUrl: item.postImageUrl,
-                          width: 44,
-                          height: 44,
+                          width: 48,
+                          height: 48,
                           fit: BoxFit.cover,
                           placeholder: (context, url) => Container(color: Colors.grey[200]),
                           errorWidget: (context, url, error) => const Icon(Icons.error),

@@ -206,24 +206,15 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       ],
                       const SizedBox(height: 6),
 
-                      // Account Type Capsule & Location
+                      // Account Type & Location
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: AppColors.maleBg,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              accountType,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: AppColors.primaryOrange,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                          const Icon(Icons.home_outlined, size: 14, color: AppColors.textMuted),
+                          const SizedBox(width: 2),
+                          Text(
+                            accountType,
+                            style: const TextStyle(fontSize: 12, color: AppColors.textMuted),
                           ),
                           const SizedBox(width: 8),
                           const Icon(Icons.location_on_outlined, size: 14, color: AppColors.textMuted),
